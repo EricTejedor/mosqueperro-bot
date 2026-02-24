@@ -1,3 +1,4 @@
+const dailyDestiny = new Map();
 require("dotenv").config();
 const cron = require("node-cron");
 
@@ -96,6 +97,78 @@ client.on("messageCreate", async (message) => {
 
     message.reply(result);
   }
+  // =========================
+// 🔮 DESTINO DIARIO
+// =========================
+
+if (message.content === "!destino") {
+
+  const today = new Date().toDateString();
+  const userId = message.author.id;
+
+  if (dailyDestiny.has(userId) && dailyDestiny.get(userId) === today) {
+    return message.reply("🔮 Ya te leí el destino hoy... no fuerces al universo.");
+  }
+
+  dailyDestiny.set(userId, today);
+
+  const random = Math.random();
+  let result;
+
+  if (random < 0.01) {
+    result = "💀 PROFECÍA OSCURA... algo extraño ocurrirá hoy...";
+  } else if (random < 0.15) {
+    result = "🌪 Día maldito... cuidado con lo que dices.";
+  } else if (random < 0.40) {
+    result = "🌧 Día turbio... vibra rara en el ambiente.";
+  } else if (random < 0.80) {
+    result = "🌤 Día normal... el universo está neutro.";
+  } else {
+    result = "🌞 Día bendecido por las energías cósmicas.";
+  }
+
+  message.reply(`🔮 Madame Mosqueperro dice:\n\n${result}`);
+}
+// =========================
+// 🃏 TAROT
+// =========================
+
+if (message.content === "!tarot") {
+
+  const cartas = [
+    "🃏 El Loco — decisiones impulsivas se acercan.",
+    "👑 El Emperador — poder y dominio sobre otros.",
+    "💀 La Muerte — cambio radical inminente.",
+    "🌙 La Luna — alguien no es quien parece.",
+    "🔥 El Diablo — tentaciones peligrosas.",
+    "⭐ La Estrella — esperanza inesperada.",
+    "⚖️ La Justicia — algo se equilibrará."
+  ];
+
+  const carta = cartas[Math.floor(Math.random() * cartas.length)];
+
+  message.reply(`🔮 La carta revelada es:\n\n${carta}`);
+}
+// =========================
+// 🎱 BOLA MÁGICA
+// =========================
+
+if (message.content.startsWith("!bola")) {
+
+  const respuestas = [
+    "Sí.",
+    "No.",
+    "Probablemente.",
+    "Definitivamente no.",
+    "Las energías dicen que sí.",
+    "Mejor no preguntar eso...",
+    "El universo está en silencio."
+  ];
+
+  const respuesta = respuestas[Math.floor(Math.random() * respuestas.length)];
+
+  message.reply(`🎱 ${respuesta}`);
+}
 });
 
 // =========================
