@@ -1,6 +1,6 @@
-const dailyDestiny = new Map();
 require("dotenv").config();
 const cron = require("node-cron");
+const dailyDestiny = new Map();
 
 const {
   Client,
