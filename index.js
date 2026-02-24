@@ -65,13 +65,13 @@ client.on("messageCreate", async (message) => {
 
     const acceptButton = new ButtonBuilder()
       .setCustomId("accept_rps")
-      .setLabel("Aceptar duelo")
+      .setLabel("Acepta Marica")
       .setStyle(ButtonStyle.Success);
 
     const row = new ActionRowBuilder().addComponents(acceptButton);
 
     const gameMessage = await message.channel.send({
-      content: `${opponent}, ${message.author.username} te reta a Piedra Papel Tijera.`,
+      content: `${opponent}, ${message.author.username} te desafia a Piedra Papel Tijera.`,
       components: [row]
     });
 
@@ -124,7 +124,7 @@ client.on("interactionCreate", async (interaction) => {
   if (interaction.customId === "accept_rps") {
     if (interaction.user.id !== game.player2.id)
       return interaction.reply({
-        content: "No es tu partida.",
+        content: "Eres tonto o peinas calvos, no ves que no es tu nombre",
         ephemeral: true
       });
 
@@ -135,7 +135,7 @@ client.on("interactionCreate", async (interaction) => {
     );
 
     await interaction.update({
-      content: "Elegid vuestra jugada:",
+      content: "Elige coño",
       components: [buttons]
     });
   }
@@ -164,7 +164,7 @@ client.on("interactionCreate", async (interaction) => {
       let winner;
 
       if (p1 === p2) {
-        winner = "Empate 🤝";
+        winner = "Quedais como panas 🤝";
       } else if (
         (p1 === "piedra" && p2 === "tijera") ||
         (p1 === "papel" && p2 === "piedra") ||
@@ -174,6 +174,7 @@ client.on("interactionCreate", async (interaction) => {
       } else {
         winner = `${game.player2.username} gana 🎉`;
       }
+      
 
       await interaction.message.edit({
         content:
