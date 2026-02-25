@@ -24,30 +24,31 @@ client.once("ready", () => {
   console.log("MosqueperroBot online 🐶");
 
   // 🌅 MENSAJE DIARIO 8:00
-    cron.schedule("16 16 * * *", async () => {
-   // tu código
+ cron.schedule("25 16 * * *", async () => {
+
+  const channelId = "ID_DEL_CANAL_AQUI";
+  const channel = await client.channels.fetch(channelId);
+  if (!channel) return;
+
+  const row = new ActionRowBuilder().addComponents(
+    new ButtonBuilder()
+      .setCustomId("amanecer_bien")
+      .setLabel("😇 Bien")
+      .setStyle(ButtonStyle.Success),
+    new ButtonBuilder()
+      .setCustomId("amanecer_mal")
+      .setLabel("😢 Mal")
+      .setStyle(ButtonStyle.Danger)
+  );
+
+  channel.send({
+    content: "🌅 Buenos días Mosqueperros.\n¿Cómo has amanecido?",
+    components: [row]
+  });
+
 }, {
-   timezone: "Europe/Madrid"
+  timezone: "Europe/Madrid"
 });
-    const channelId = "⏰│𝓑𝓾𝓮𝓷𝓸𝓼-𝓭𝓲𝓪𝓼";
-    const channel = client.channels.cache.get(channelId);
-    if (!channel) return;
-
-    const row = new ActionRowBuilder().addComponents(
-      new ButtonBuilder()
-        .setCustomId("amanecer_bien")
-        .setLabel("😇 Bien")
-        .setStyle(ButtonStyle.Success),
-      new ButtonBuilder()
-        .setCustomId("amanecer_mal")
-        .setLabel("😢 Mal")
-        .setStyle(ButtonStyle.Danger)
-    );
-
-    channel.send({
-      content: "🌅 Buenos días Mosqueperros.\n¿Cómo has amanecido?",
-      components: [row]
-    });
   });
 
 // =========================
