@@ -26,7 +26,7 @@ client.once("ready", () => {
   // 🌅 MENSAJE DIARIO 8:00
  cron.schedule("25 16 * * *", async () => {
 
-  const channelId = "ID_DEL_CANAL_AQUI";
+  const channelId = "1475831801493852180";
   const channel = await client.channels.fetch(channelId);
   if (!channel) return;
 
