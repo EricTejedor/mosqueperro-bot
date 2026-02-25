@@ -23,8 +23,8 @@ const activeGames = new Map();
 client.once("ready", () => {
   console.log("MosqueperroBot online 🐶");
 
-  // 🌅 MENSAJE DIARIO 8:00
- cron.schedule("25 16 * * *", async () => {
+  // 🌅 MENSAJE DIARIO 7:00
+ cron.schedule("0 7 * * *", async () => {
 
   const channelId = "1475831801493852180";
   const channel = await client.channels.fetch(channelId);
@@ -42,7 +42,7 @@ client.once("ready", () => {
   );
 
   channel.send({
-    content: "🌅 Buenos días Mosqueperros.\n¿Cómo has amanecido?",
+    content: "🌅 Buenos días Mosqueperros.\n¿Cómo habéis amanecido?",
     components: [row]
   });
 
