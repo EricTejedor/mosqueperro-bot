@@ -24,7 +24,11 @@ client.once("ready", () => {
   console.log("MosqueperroBot online 🐶");
 
   // 🌅 MENSAJE DIARIO 8:00
-  cron.schedule("10 16 * * *", async () => {
+    cron.schedule("16 16 * * *", async () => {
+   // tu código
+}, {
+   timezone: "Europe/Madrid"
+});
     const channelId = "⏰│𝓑𝓾𝓮𝓷𝓸𝓼-𝓭𝓲𝓪𝓼";
     const channel = client.channels.cache.get(channelId);
     if (!channel) return;
@@ -45,7 +49,6 @@ client.once("ready", () => {
       components: [row]
     });
   });
-});
 
 // =========================
 // MENSAJES
